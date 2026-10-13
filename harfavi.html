@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>DersLab - Harf Avı</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6ff;
+            text-align: center;
+        }
+
+        header {
+            background: #3157d5;
+            color: white;
+            padding: 35px;
+        }
+
+        .oyun {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #d0d4df;
+        }
+
+        .harfler {
+            margin: 25px;
+        }
+
+        button {
+            background: #3157d5;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 8px;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔤 Harf Avı</h1>
+    <p>Doğru harfi bul!</p>
+</header>
+
+<div class="oyun">
+
+    <h2>🎯 A harfini bul!</h2>
+
+    <div class="harfler">
+        <button onclick="alert('🎉 Doğru!')">A</button>
+        <button onclick="alert('❌ Tekrar dene!')">B</button>
+        <button onclick="alert('❌ Tekrar dene!')">D</button>
+        <button onclick="alert('❌ Tekrar dene!')">M</button>
+    </div>
+
+    <hr>
+
+    <h2>🎯 M harfini bul!</h2>
+
+    <div class="harfler">
+        <button onclick="alert('❌ Tekrar dene!')">K</button>
+        <button onclick="alert('❌ Tekrar dene!')">S</button>
+        <button onclick="alert('🎉 Doğru!')">M</button>
+        <button onclick="alert('❌ Tekrar dene!')">T</button>
+    </div>
+
+    <hr>
+
+    <h2>🎯 Ç harfini bul!</h2>
+
+    <div class="harfler">
+        <button onclick="alert('❌ Tekrar dene!')">C</button>
+        <button onclick="alert('❌ Tekrar dene!')">Ş</button>
+        <button onclick="alert('🎉 Doğru!')">Ç</button>
+        <button onclick="alert('❌ Tekrar dene!')">G</button>
+    </div>
+
+</div>
+
+</body>
+</html>

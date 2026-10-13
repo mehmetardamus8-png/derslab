@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DersLab - 3. Sınıf</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6ff;
+        }
+
+        header {
+            background: #3157d5;
+            color: white;
+            text-align: center;
+            padding: 35px;
+        }
+
+        .dersler {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .ders {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #d0d4df;
+        }
+
+        .ders h2 {
+            color: #3157d5;
+        }
+
+        button {
+            background: #3157d5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2445b5;
+        }
+
+        @media (max-width: 600px) {
+            .dersler {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 DersLab</h1>
+    <p>3. Sınıf Dersleri</p>
+</header>
+
+<div class="dersler">
+
+    <div class="ders">
+        <h2>📖 Türkçe</h2>
+        <p>Türkçe dersleri</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="ders">
+        <h2>🔢 Matematik</h2>
+        <p>Matematik dersleri</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="ders">
+        <h2>🔬 Fen Bilimleri</h2>
+        <p>Fen Bilimleri dersleri</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="ders">
+        <h2>🌍 Sosyal Bilgiler</h2>
+        <p>Sosyal Bilgiler dersleri</p>
+        <button>Giriş</button>
+    </div>
+
+</div>
+
+</body>
+</html>

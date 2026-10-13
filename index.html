@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DersLab</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6ff;
+        }
+
+        header {
+            background: #3157d5;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 19px;
+            margin-top: 10px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 25px;
+            background: white;
+        }
+
+        .menu button {
+            border: none;
+            background: #eef2ff;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .menu button:hover {
+            background: #dce4ff;
+        }
+
+        .baslik {
+            text-align: center;
+            margin: 35px 10px 20px;
+            color: #202b55;
+        }
+
+        .siniflar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .sinif {
+            background: white;
+            border-radius: 18px;
+            padding: 30px 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px #d0d4df;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sinif:hover {
+            transform: translateY(-5px);
+        }
+
+        .sinif h2 {
+            color: #3157d5;
+            margin: 0 0 10px;
+        }
+
+        .sinif p {
+            color: #555;
+        }
+
+        .sinif button {
+            background: #3157d5;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #202b55;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .siniflar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 DersLab</h1>
+    <p>Reklamsız öğrenmenin eğlenceli yolu!</p>
+</header>
+
+<div class="menu">
+    <button>📚 Dersler</button>
+    <button>📖 Ders Kitapları</button>
+    <button>📝 Testler</button>
+    <button>🏆 Denemeler</button>
+   <button onclick="window.location.href='oyunlar.html'">🎮 Ders Oyunları</button>
+</div>
+
+<h2 class="baslik">🎓 Sınıfını Seç</h2>
+<div class="sinif">
+    <h2>1. Sınıf</h2>
+    <p>Temel eğitim</p>
+    <button onclick="window.location.href='sinif1.html'">Giriş</button>
+</div>
+<div class="siniflar">
+   <div class="sinif">
+    <h2>2. Sınıf</h2>
+    <p>Temel eğitim</p>
+    <button onclick="window.location.href='sinif2.html'">Giriş</button>
+</div>
+
+    <div class="sinif">
+    <h2>3. Sınıf</h2>
+    <p>Temel eğitim</p>
+    <button onclick="window.location.href='sinif3.html'">Giriş</button>
+</div>
+   <div class="sinif">
+    <h2>4. Sınıf</h2>
+    <p>Temel eğitim</p>
+    <button onclick="window.location.href='sinif4.html'">Giriş</button>
+</div>
+    <div class="sinif">
+        <h2>5. Sınıf</h2>
+        <p>Ortaokul</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="sinif">
+        <h2>6. Sınıf</h2>
+        <p>Ortaokul</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="sinif">
+        <h2>7. Sınıf</h2>
+        <p>Ortaokul</p>
+        <button>Giriş</button>
+    </div>
+
+    <div class="sinif">
+        <h2>8. Sınıf</h2>
+        <p>LGS hazırlık</p>
+        <button>Giriş</button>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 DersLab — Reklamsız Eğitim
+</footer>
+
+</body>
+</html>

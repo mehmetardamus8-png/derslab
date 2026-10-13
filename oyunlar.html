@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DersLab - Oyun Merkezi</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f5ff;
+    color: #202b55;
+}
+header {
+    background: linear-gradient(135deg, #4938d0, #7957e8);
+    color: white;
+    padding: 30px 15px;
+    text-align: center;
+}
+header h1 { font-size: 36px; margin: 0 0 10px; }
+main { max-width: 950px; margin: auto; padding: 25px 15px; }
+.baslik { text-align: center; }
+.kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+.kart {
+    background: white;
+    padding: 23px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 12px #dce0f1;
+} transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: kartBelir 0.7s ease both;
+.resim { font-size: 52px; }
+.kart h2 { font-size: 21px; }
+.kart p { color: #626b85; min-height: 38px; }
+button {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 20px;
+    background: #5544dc;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+#oyun {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px #dce0f1;
+    text-align: center;
+    display: none;
+}
+#cevaplar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+.cevap {
+    min-width: 110px;
+    background: #eef0ff;
+    color: #30266f;
+    border: 2px solid #d8d9ff;
+}
+#mesaj { font-weight: bold; min-height: 25px; }
+#puan { font-size: 19px; font-weight: bold; }
+footer { text-align: center; padding: 20px; color: #626b85; }
+@keyframes kartBelir {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+button {
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.12);
+}/* Kartların açılış animasyonu */
+@keyframes kartBelir {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.kart {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    animation: kartBelir 0.8s ease both;
+}
+
+.kart:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.kart:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.kart:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 15px 30px #aaa6ee;
+}
+
+button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 5px 15px #c6c0ff;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🎮 DersLab Oyun Merkezi</h1>
+    <p>Oyna, öğren, puanları topla!</p>
+</header>
+
+<main>
+    <h2 class="baslik">🌟 Bir oyun seç!</h2>
+<div style="text-align:center; margin:20px;">
+    <h2>🎯 Zorluk Seviyesi</h2>
+    <button onclick="seviyeSec('kolay')" id="kolay">🟢 Kolay</button>
+    <button onclick="seviyeSec('orta')" id="orta">🟡 Orta</button>
+    <button onclick="seviyeSec('zor')" id="zor">🔴 Zor</button>
+    <p id="seviyeBilgi">Seviye: Kolay</p>
+</div>
+    <div class="kartlar" id="kartlar">
+        <div class="kart">
+            <div class="resim">🧠</div>
+            <h2>Bilgi Yarışması</h2>
+            <p>Soruları cevapla, puan kazan!</p>
+            <button onclick="baslat('bilgi')">Oyna</button>
+        </div>
+
+        <div class="kart">
+            <div class="resim">🔗</div>
+            <h2>Eşleştirme</h2>
+            <p>Kelime ile doğru cevabı eşleştir!</p>
+            <button onclick="baslat('eslestirme')">Oyna</button>
+        </div>
+
+        <div class="kart">
+            <div class="resim">🔤</div>
+            <h2>Kelime Bul</h2>
+            <p>İpuçlarını kullanarak kelimeyi bul!</p>
+            <button onclick="baslat('kelime')">Oyna</button>
+        </div>
+    </div>
+<section id="rekor" style="background:white;padding:20px;border-radius:18px;text-align:center;margin:20px 0;box-shadow:0 4px 12px #dce0f1;">
+    <h2>🏆 Rekor Tablosu</h2>
+    <p id="rekorPuan">En yüksek puanın: 0</p>
+    <button onclick="rekoruSifirla()" style="background:#68718a">Rekoru Sıfırla</button>
+</section>
+    <section id="oyun">
+        <h2 id="oyunBaslik"></h2>
+        <p id="ilerleme"></p>
+        <h2 id="soru"></h2>
+        <div id="cevaplar"></div>
+        <p id="mesaj" aria-live="polite"></p>
+        <p id="puan">⭐ Puan: 0</p>
+        <button id="sonraki" onclick="sonrakiSoru()" hidden>Sonraki ➜</button>
+        <button onclick="menuyeDon()" style="background:#68718a">Oyun menüsü</button>
+    </section>
+</main>
+
+<footer>© 2026 DersLab — Reklamsız öğrenme 💜</footer>
+<script>
+const sorular = {
+ kolay: [
+  {s:"5 + 3 kaçtır?",c:["7","8","9"],d:"8"},
+  {s:"12 - 4 kaçtır?",c:["6","8","9"],d:"8"},
+  {s:"Türk alfabesinde kaç harf vardır?",c:["28","29","30"],d:"29"},
+  {s:"2 + 6 kaçtır?",c:["7","8","10"],d:"8"},
+  {s:"Bir haftada kaç gün vardır?",c:["5","6","7"],d:"7"}
+ ],
+ orta: [
+  {s:"24 + 18 kaçtır?",c:["32","42","44"],d:"42"},
+  {s:"63 - 27 kaçtır?",c:["36","46","34"],d:"36"},
+  {s:"6 × 7 kaçtır?",c:["36","42","48"],d:"42"},
+  {s:"Bir saatte kaç dakika vardır?",c:["30","60","100"],d:"60"},
+  {s:"144 ÷ 12 kaçtır?",c:["11","12","14"],d:"12"}
+ ],
+ zor: [
+  {s:"125 + 278 kaçtır?",c:["393","403","413"],d:"403"},
+  {s:"15 × 12 kaçtır?",c:["170","180","190"],d:"180"},
+  {s:"144 ÷ 8 + 17 kaçtır?",c:["35","18","36"],d:"35"},
+  {s:"Bir sayının 3 katı 72 ise sayı kaçtır?",c:["21","24","27"],d:"24"},
+  {s:"200'ün %15'i kaçtır?",c:["20","30","35"],d:"30"}
+ ]
+};
+
+let seviye = "kolay";
+let liste = [];
+let sira = 0;
+let puan = 0;
+let cevaplandi = false;
+let zamanlayici;
+
+function seviyeSec(yeni) {
+ seviye = yeni;
+ const adlar = {kolay:"🟢 Kolay", orta:"🟡 Orta", zor:"🔴 Zor"};
+ document.getElementById("seviyeBilgi").textContent = "Seviye: " + adlar[seviye];
+}
+
+function baslat(tur) {
+ clearInterval(zamanlayici);
+ liste = [...sorular[seviye]];
+ liste.sort(() => Math.random() - 0.5);
+ sira = 0;
+ puan = 0;
+ document.getElementById("kartlar").style.display = "none";
+ document.getElementById("oyun").style.display = "block";
+ document.getElementById("oyunBaslik").textContent =
+  (tur === "bilgi" ? "🧠 Bilgi Yarışması" :
+   tur === "eslestirme" ? "🔗 Eşleştirme" : "🔤 Kelime Bul")
+  + " — " + seviye.toUpperCase();
+ gosterSoru();
+}
+
+function gosterSoru() {
+ clearInterval(zamanlayici);
+ cevaplandi = false;
+ let kalanSure = seviye === "zor" ? 15 : seviye === "orta" ? 25 : 0;
+ const q = liste[sira];
+ document.getElementById("ilerleme").textContent =
+  "Soru " + (sira + 1) + " / " + liste.length;
+ document.getElementById("soru").textContent = q.s;
+ document.getElementById("mesaj").textContent = "";
+ document.getElementById("sonraki").hidden = true;
+ const alan = document.getElementById("cevaplar");
+ alan.replaceChildren();
+
+ [...q.c].sort(() => Math.random() - 0.5).forEach(secenek => {
+  const b = document.createElement("button");
+  b.className = "cevap";
+  b.textContent = secenek;
+  b.onclick = () => cevapVer(secenek);
+  alan.appendChild(b);
+ });
+
+ guncellePuan();
+
+ if (kalanSure > 0) {
+  document.getElementById("mesaj").textContent =
+   "⏱️ Kalan süre: " + kalanSure + " saniye";
+  zamanlayici = setInterval(() => {
+   kalanSure--;
+   if (kalanSure <= 0) {
+    clearInterval(zamanlayici);
+    cevapVer(null);
+   } else if (!cevaplandi) {
+    document.getElementById("mesaj").textContent =
+     "⏱️ Kalan süre: " + kalanSure + " saniye";
+   }
+  }, 1000);
+ }
+}
+
+function cevapVer(secim) {
+ if (cevaplandi) return;
+ cevaplandi = true;
+ clearInterval(zamanlayici);
+ const dogru = liste[sira].d;
+
+ if (secim === dogru) {
+  puan += seviye === "zor" ? 30 : seviye === "orta" ? 20 : 10;
+  document.getElementById("mesaj").textContent = "🎉 Doğru cevap!";
+ } else {
+  document.getElementById("mesaj").textContent =
+   (secim === null ? "⏰ Süre doldu! " : "🙂 Yanlış cevap! ") +
+   "Doğru cevap: " + dogru;
+ }
+
+ document.querySelectorAll(".cevap").forEach(b => {
+  b.disabled = true;
+  if (b.textContent === dogru) b.style.background = "#baf3d0";
+ });
+
+ guncellePuan();
+ document.getElementById("sonraki").hidden = false;
+ document.getElementById("sonraki").textContent =
+  sira === liste.length - 1 ? "Sonucu Gör 🏆" : "Sonraki ➜";
+}
+
+function guncellePuan() {
+ document.getElementById("puan").textContent = "⭐ Puan: " + puan;
+}
+function rekoruGoster() {
+ const rekor = Number(localStorage.getItem("derslabRekor") || 0);
+ document.getElementById("rekorPuan").textContent =
+  "🏆 En yüksek puanın: " + rekor;
+}
+
+function rekoruKaydet() {
+ const eskiRekor = Number(localStorage.getItem("derslabRekor") || 0);
+ if (puan > eskiRekor) {
+  localStorage.setItem("derslabRekor", puan);
+ }
+ rekoruGoster();
+}
+
+function rekoruSifirla() {
+ if (confirm("Rekorunu silmek istiyor musun?")) {
+  localStorage.removeItem("derslabRekor");
+  rekoruGoster();
+ }
+}
+
+rekoruGoster();
+function sonrakiSoru() {
+ if (sira < liste.length - 1) {
+  sira++;
+  gosterSoru();
+ } else {
+  clearInterval(zamanlayici);
+  document.getElementById("ilerleme").textContent = "Oyun tamamlandı!";
+  document.getElementById("soru").textContent = "🏆 Tebrikler!";
+  document.getElementById("cevaplar").replaceChildren();
+  document.getElementById("mesaj").textContent =
+   "Puanın: " + puan + " / " +
+rekoruKaydet();
+   (liste.length * (seviye === "zor" ? 30 : seviye === "orta" ? 20 : 10));
+  document.getElementById("sonraki").hidden = true;
+ }
+}
+
+function menuyeDon() {
+ clearInterval(zamanlayici);
+ document.getElementById("oyun").style.display = "none";
+ document.getElementById("kartlar").style.display = "grid";
+}
+</script>
+</body>
+</html>
